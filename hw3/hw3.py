@@ -11,9 +11,14 @@ from PIL import Image
 import os
 from . import hw3_scene
 import json
+import sys
+
+# Pick the GPU backend for this computer: Macs need Metal,
+# Windows/Linux use Vulkan.
+GPU_TYPE = spy.DeviceType.metal if sys.platform == 'darwin' else spy.DeviceType.vulkan
 
 def hw3_1(args):
-    slang_device = spy.create_device(type=spy.DeviceType.vulkan)
+    slang_device = spy.create_device(type=GPU_TYPE)
     compute_shader = device.load_compute_shader(slang_device, 'hw3/hw3_1.slang')
     img = buffer.create_texture_2d(slang_device, args.width, args.height)
 
@@ -57,7 +62,7 @@ def hw3_1(args):
         image.save_png(args.output, img.to_numpy())
 
 def hw3_2(args):
-    slang_device = spy.create_device(type=spy.DeviceType.vulkan)
+    slang_device = spy.create_device(type=GPU_TYPE)
     compute_shader = device.load_compute_shader(slang_device, 'hw3/hw3_2.slang')
     img = buffer.create_texture_2d(slang_device, args.width, args.height)
 
@@ -87,7 +92,7 @@ def hw3_2(args):
         image.save_png(args.output, img.to_numpy())
 
 def hw3_3(args):
-    slang_device = spy.create_device(type=spy.DeviceType.vulkan)
+    slang_device = spy.create_device(type=GPU_TYPE)
     compute_shader = device.load_compute_shader(slang_device, 'hw3/hw3_3.slang')
     img = buffer.create_texture_2d(slang_device, args.width, args.height)
 
@@ -116,7 +121,7 @@ def hw3_3(args):
         image.save_png(args.output, img.to_numpy())
 
 def hw3_4(args):
-    slang_device = spy.create_device(type=spy.DeviceType.vulkan)
+    slang_device = spy.create_device(type=GPU_TYPE)
     compute_shader = device.load_compute_shader(slang_device, 'hw3/hw3_4.slang')
     img = buffer.create_texture_2d(slang_device, args.width, args.height)
 
@@ -179,7 +184,7 @@ def hw3_4(args):
         image.save_png(args.output, img.to_numpy())
 
 def hw3_5(args):
-    slang_device = spy.create_device(type=spy.DeviceType.vulkan)
+    slang_device = spy.create_device(type=GPU_TYPE)
     compute_shader = device.load_compute_shader(slang_device, 'hw3/hw3_5.slang')
     img = buffer.create_texture_2d(slang_device, args.width, args.height)
 
@@ -242,7 +247,7 @@ def hw3_5(args):
         image.save_png(args.output, img.to_numpy())
 
 def hw3_6(args):
-    slang_device = spy.create_device(type=spy.DeviceType.vulkan)
+    slang_device = spy.create_device(type=GPU_TYPE)
     compute_shader = device.load_compute_shader(slang_device, 'hw3/hw3_6.slang')
     img = buffer.create_texture_2d(slang_device, args.width, args.height)
 
